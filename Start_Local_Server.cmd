@@ -12,3 +12,5 @@ Call %windir%\System32\cmd.exe "/K" C:\Users\Greg\anaconda3\Scripts\activate.bat
 python -m http.server
 
 ::Navigate to the given port number in your browser: localhost:8000. 
+
+:: REMEMBER TO PRESS Ctrl+Shift+R TO CLEAR THE CACHE TO UPDATE YOUR BROWSER: localhost:8000

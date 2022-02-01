@@ -58,30 +58,60 @@ function buildCharts(sample) {
   // 2. Use d3.json to load and retrieve the samples.json file 
   d3.json("samples.json").then((data) => {
     // 3. Create a variable that holds the samples array. 
+    var samples = data.samples;
+    console.log(`data Keys`,Object.keys(data));
+    console.log(`data values`,Object.values(data));
 
     // 4. Create a variable that filters the samples for the object with the desired sample number.
-
     //  5. Create a variable that holds the first sample in the array.
-
+    var resultArray = samples.filter(sampleObj => sampleObj.id == sample);
+    console.log(`5. Create a variable that holds the first sample in the array. - resultArray:`,resultArray);    
+    console.log(`resultArray Keys`,Object.keys(resultArray));
+    console.log(`resultArray Values`,Object.values(resultArray));
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
+    var otu_idsResult = {};
+    otu_idsResult = resultArray.otu_ids;
+    console.log(`6. Create variables that hold the otu_ids. - otu_idsResult:`,otu_idsResult)
 
+    var otu_labelsResult = result.otu_labels[0];
+    
+    console.log(`6. Create variables that hold the otu_labels. - otu_labelsResult:`,otu_labelsResult)
+    
+
+    var sample_valuesResult = result.sample_values[0];
+    
+    console.log(`6. Create variables that hold the sample_values. - sample_valuesResult:`,sample_valuesResult)
+    
 
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
+    // data = data.slice(0, 10);
+    // data = data.reverse();
 
-    var yticks = 
+    // var yticks = otu_idsResult.slice(0, 10);
+    // console.log(`yticks`,yticks)
 
     // 8. Create the trace for the bar chart. 
-    var barData = [
-      
-    ];
-    // 9. Create the layout for the bar chart. 
-    var barLayout = {
-     
-    };
+    // var trace1 = {
+    //   x: data.map(row => row.otu_idsResult),
+    //   y: data.map(row => row.sample_valuesResult),
+    //   text: data.map(row => row.otu_labelsResult),
+    //   name: "Greg",
+    //   type: "bar",
+    //   orientation: "h"
+    // };
+    // var barData = [trace1];
+    // // 9. Create the layout for the bar chart. 
+    // var barLayout = {  title: "Greg's search results",
+    // margin: {
+    //   l: 100,
+    //   r: 100,
+    //   t: 100,
+    //   b: 100
+    // };
     // 10. Use Plotly to plot the data with the layout. 
     
   });
-}
+};
