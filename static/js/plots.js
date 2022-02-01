@@ -36,7 +36,13 @@ function buildMetadata(sample) {
     var metadata = data.metadata;
     // Filter the data for the object with the desired sample number
     var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
+    console.log(`Demographics resultArray Keys`,Object.keys(resultArray));
+    console.log(`Demographics resultArray Values`,Object.values(resultArray));
+    
     var result = resultArray[0];
+    console.log(`Demographics result Keys`,Object.keys(result));
+    console.log(`Demographics result Values`,Object.values(result));
+
     // Use d3 to select the panel with id of `#sample-metadata`
     var PANEL = d3.select("#sample-metadata");
 
@@ -60,14 +66,19 @@ function buildCharts(sample) {
     // 3. Create a variable that holds the samples array. 
     var samples = data.samples;
     console.log(`data Keys`,Object.keys(data));
-    console.log(`data values`,Object.values(data));
+    console.log(`data Values`,Object.values(data));
 
     // 4. Create a variable that filters the samples for the object with the desired sample number.
-    //  5. Create a variable that holds the first sample in the array.
     var resultArray = samples.filter(sampleObj => sampleObj.id == sample);
-    console.log(`5. Create a variable that holds the first sample in the array. - resultArray:`,resultArray);    
+    console.log(`4. Create a variable that filters the samples for the object with the desired sample number. - resultArray`,resultArray);    
     console.log(`resultArray Keys`,Object.keys(resultArray));
     console.log(`resultArray Values`,Object.values(resultArray));
+
+    //  5. Create a variable that holds the first sample in the array.
+    var result = resultArray[0];
+    console.log(`5. Create a variable that holds the first sample in the array. - result:`,result); 
+    console.log(`Demographics result Keys`,Object.keys(result));
+    console.log(`Demographics result Values`,Object.values(result));
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_idsResult = {};
