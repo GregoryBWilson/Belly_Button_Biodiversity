@@ -81,16 +81,16 @@ function buildCharts(sample) {
     console.log(`Demographics result Values`,Object.values(result));
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-    var otu_idsResult = {};
-    otu_idsResult = resultArray.otu_ids;
+    var otu_idsResult = result.otu_ids;
+
     console.log(`6. Create variables that hold the otu_ids. - otu_idsResult:`,otu_idsResult)
 
-    var otu_labelsResult = result.otu_labels[0];
+    var otu_labelsResult = result.otu_labels;
     
     console.log(`6. Create variables that hold the otu_labels. - otu_labelsResult:`,otu_labelsResult)
     
 
-    var sample_valuesResult = result.sample_values[0];
+    var sample_valuesResult = result.sample_values;
     
     console.log(`6. Create variables that hold the sample_values. - sample_valuesResult:`,sample_valuesResult)
     
@@ -98,12 +98,8 @@ function buildCharts(sample) {
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
-    // data = data.slice(0, 10);
-    // data = data.reverse();
 
-    // var yticks = otu_idsResult.slice(0, 10);
-    // console.log(`yticks`,yticks)
-
+    var yticks = otu_idsResult.slice(0,10).map(otuID => 'OTU ${otuID}').reverse();
     // 8. Create the trace for the bar chart. 
     // var trace1 = {
     //   x: data.map(row => row.otu_idsResult),
@@ -114,15 +110,34 @@ function buildCharts(sample) {
     //   orientation: "h"
     // };
     // var barData = [trace1];
-    // // 9. Create the layout for the bar chart. 
-    // var barLayout = {  title: "Greg's search results",
-    // margin: {
-    //   l: 100,
-    //   r: 100,
-    //   t: 100,
-    //   b: 100
-    // };
+    var trace1 = {
+      type: 'bar',
+      x: sample_valuesResult.slice(0,10),
+      y: otu_idsResult.slice(0,10).reverse(),
+      text: otu_labelsResult.slice(0,10).reverse(),
+      name: "Greg",
+      type: "bar",
+      orientation: 'h'
+    };
+    var barData = [trace1];
+    console.log(`Y Ticks`,yticks);
+    console.log(`sample_valuesResult.slice`,sample_valuesResult.slice(0,10));
+    console.log(`barData`,barData);
+
+
+    // 9. Create the layout for the bar chart. 
+    var barLayout = {  title: "Top 10 Bacteria Cultures Found",
+    margin: {
+      l: 100,
+      r: 100,
+      t: 100,
+      b: 100
+    }
+    }
+    console.log(`barLayout`,barLayout)
     // 10. Use Plotly to plot the data with the layout. 
-    
-  });
-};
+    Plotly.newPlot('bar',barData, barLayout)
+
+  }
+  )
+} 
