@@ -188,7 +188,22 @@ function buildCharts(sample) {
         value: wfreq,
         title: { text: "Srubs per Week" },
         type: "indicator",
-        mode: "gauge+number"
+        mode: "gauge+number",
+        gauge: {
+          axis: { range: [null, 10] },
+          steps: [
+            { range: [0, 2], color: "red" },
+            { range: [2, 4], color: "orange" },
+            { range: [4, 6], color: "yellow" },
+            { range: [6, 8], color: "lightgreen" },
+            { range: [8, 10], color: "green" },
+          ],
+          threshold: {
+            line: { color: "red", width: 4 },
+            thickness: 0.75,
+            value: 5
+          }
+        }
       }
     ];
 
