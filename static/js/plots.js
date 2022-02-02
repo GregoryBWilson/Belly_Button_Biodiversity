@@ -113,9 +113,9 @@ function buildCharts(sample) {
     // var barData = [trace1];
     var trace1 = {
       type: 'bar',
-      x: sample_valuesResult.slice(0,10),
-      y: otu_idsResult.slice(0,10),
-      text: yticks,
+      x: sample_valuesResult.slice(0,10).reverse(),
+      y: yticks.reverse(),
+      // text: yticks,
       name: "Greg",
       type: "bar",
       orientation: 'h'
