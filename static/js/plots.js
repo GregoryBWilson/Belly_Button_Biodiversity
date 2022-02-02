@@ -79,8 +79,8 @@ function buildCharts(sample) {
     console.log(`5. Create a variable that holds the first sample in the array. - result:`,result); 
     console.log(`Demographics result Keys`,Object.keys(result));
     console.log(`Demographics result Values`,Object.values(result));
-
-    // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
+    
+    //  6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_idsResult = result.otu_ids;
 
     console.log(`6. Create variables that hold the otu_ids. - otu_idsResult:`,otu_idsResult)
@@ -98,8 +98,9 @@ function buildCharts(sample) {
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
+    text1 = "OTN "
+    var yticks = otu_idsResult.slice(0,10).map(element => text1.concat(element));
 
-    var yticks = otu_idsResult.slice(0,10).map(otuID => 'OTU ${otuID}').reverse();
     // 8. Create the trace for the bar chart. 
     // var trace1 = {
     //   x: data.map(row => row.otu_idsResult),
@@ -113,8 +114,8 @@ function buildCharts(sample) {
     var trace1 = {
       type: 'bar',
       x: sample_valuesResult.slice(0,10),
-      y: otu_idsResult.slice(0,10).reverse(),
-      text: otu_labelsResult.slice(0,10).reverse(),
+      y: otu_idsResult.slice(0,10),
+      text: yticks,
       name: "Greg",
       type: "bar",
       orientation: 'h'
@@ -135,6 +136,7 @@ function buildCharts(sample) {
     }
     }
     console.log(`barLayout`,barLayout)
+
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot('bar',barData, barLayout)
 
