@@ -152,9 +152,10 @@ function buildCharts(sample) {
 
     };
 
-    console.log(bubbleData);
-
     var bubbleData = [trace2];
+
+    console.log(`bubbleData`,bubbleData);
+
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {  title: 'Bacteria Cultures Per Sample',
     showlegend: false,
@@ -165,7 +166,38 @@ function buildCharts(sample) {
 
     // 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot('bubble',bubbleData,bubbleLayout); 
-    }
-    )
+    
+    // 3. Create a variable that holds the washing frequency.
+    var metadata = data.metadata;
+    var metaArray = metadata.filter(sampleObj => sampleObj.id == sample);
+    var metaResult = metaArray[0];
+    console.log(`Demographics result Keys`,Object.keys(metaResult));
+    console.log(`Demographics result Values`,Object.values(metaResult));
+    var wfreq = metaResult.wfreq
+    console.log(`wfreq`,wfreq)
+        
+    // // 5. Create the layout for the gauge chart.
+    var gaugeLayout = { width: 600, height: 500, margin: { t: 0, b: 0 }
+     
+    };
+
+    // // 6. Use Plotly to plot the gauge data and layout.
+    var trace3 = [
+      {
+        domain: { x: [0, 1], y: [0, 1] },
+        value: wfreq,
+        title: { text: "Srubs per Week" },
+        type: "indicator",
+        mode: "gauge+number"
+      }
+    ];
+
+    var gaugeData = trace3
+    Plotly.newPlot('gauge',gaugeData,gaugeLayout);
+
+
+
+  });
+  
 } 
 
