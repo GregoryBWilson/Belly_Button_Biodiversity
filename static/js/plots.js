@@ -147,7 +147,9 @@ function buildCharts(sample) {
     text: otu_labelsResult,
     mode: 'markers',
     marker: {
-      size: sample_valuesResult
+      size: sample_valuesResult,
+      color: otu_idsResult,
+      colorscale: "Earth"
     }
 
     };
@@ -177,16 +179,19 @@ function buildCharts(sample) {
     console.log(`wfreq`,wfreq)
         
     // // 5. Create the layout for the gauge chart.
-    var gaugeLayout = { width: 600, height: 500, margin: { t: 0, b: 0 }
+    var gaugeLayout = { width: 500, height: 500, margin: { t: 0, b: 0 }
      
     };
 
-    // // 6. Use Plotly to plot the gauge data and layout.
+    var title =  '<b>Belly Button Washing Frequency</b><br></br>Srubs per Week'
+
+
+    // 6. Use Plotly to plot the gauge data and layout.
     var trace3 = [
       {
         domain: { x: [0, 1], y: [0, 1] },
         value: wfreq,
-        title: { text: "Srubs per Week" },
+        title: title,
         type: "indicator",
         mode: "gauge+number",
         gauge: {
