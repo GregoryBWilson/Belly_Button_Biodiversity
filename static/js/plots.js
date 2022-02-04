@@ -102,20 +102,12 @@ function buildCharts(sample) {
     var yticks = otu_idsResult.slice(0,10).map(element => text1.concat(element));
 
     // 8. Create the trace for the bar chart. 
-    // var trace1 = {
-    //   x: data.map(row => row.otu_idsResult),
-    //   y: data.map(row => row.sample_valuesResult),
-    //   text: data.map(row => row.otu_labelsResult),
-    //   name: "Greg",
-    //   type: "bar",
-    //   orientation: "h"
-    // };
-    // var barData = [trace1];
+
     var trace1 = {
       type: 'bar',
       x: sample_valuesResult.slice(0,10).reverse(),
       y: yticks.reverse(),
-      text: otu_labelsResult,
+      text: otu_labelsResult.slice(0,10).reverse(),
       // text: yticks,
       name: "Greg",
       type: "bar",
@@ -163,8 +155,17 @@ function buildCharts(sample) {
     var bubbleLayout = {  title: '<b>Bacteria Cultures Per Sample</b>',
     showlegend: false,
     height: 600,
-    width: 1200
-  
+    width: 1200,
+    xaxis: {
+      title: {
+        text: 'OTU ID',
+        font: {
+          // family: 'Courier New, monospace',
+          size: 24,
+          color: '#000000'
+        }
+      },
+    },  
     }
 
     // 3. Use Plotly to plot the data with the layout.
